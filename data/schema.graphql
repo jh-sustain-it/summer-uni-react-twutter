@@ -1,0 +1,116 @@
+type Author {
+  id: String!
+  username: String
+  posts(first: Int = 20, after: String): PostsPage!
+}
+
+type Post {
+  id: String!
+  text: String!
+  relyId: Int
+  repostId: Int
+  timestamp: Float!
+  reactions(first: Int = 20, after: String): ReactionsPage!
+  replies(first: Int = 20, after: String): PostsPage!
+  author: Author!
+  reply: Post
+  repost: Post
+}
+
+type PageInfo {
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+  endCursor: String
+  startCursor: String
+}
+
+type PostsEdge {
+  node: Post!
+  cursor: String!
+}
+
+type PostsPage {
+  totalCount: Int!
+  edges: [PostsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type Reaction {
+  authorId: Float!
+  postId: Float!
+  reaction: ReactionType!
+  author: Author!
+  post: Post!
+}
+
+enum ReactionType {
+  LIKE
+  DISLIKE
+  LOVE
+  CELEBRATE
+  ANGRY
+  SAD
+  WOW
+  LOL
+}
+
+type ReactionsEdge {
+  node: Reaction!
+  cursor: String!
+}
+
+type ReactionsPage {
+  totalCount: Int!
+  edges: [ReactionsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type AuthorsEdge {
+  node: Author!
+  cursor: String!
+}
+
+type AuthorsPage {
+  totalCount: Int!
+  edges: [AuthorsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type Me {
+  id: String!
+  username: String
+  posts(first: Int!, after: String): PostsPage!
+  sessionId: String!
+  sessionStartTime: Float!
+}
+
+type Query {
+  authors(first: Int = 20, after: String): AuthorsPage!
+  author(id: Int!): Author!
+  posts(first: Int = 20, after: String): PostsPage!
+  post(id: Int!): Post!
+  me: Me!
+}
+
+type Mutation {
+  createAuthor(data: LoginInput!): Author!
+  newPost(post: NewPost!): Post!
+  reply(postId: Float!, post: NewPost!): Post!
+  repost(postId: Float!, post: NewPost!): Post!
+  react(postId: Float!, reaction: ReactionInput!): Reaction!
+  deletePost(postId: Float!): String!
+  login(loginData: LoginInput!): String!
+}
+
+input LoginInput {
+  username: String!
+  password: String!
+}
+
+input NewPost {
+  text: String!
+}
+
+input ReactionInput {
+  reaction: ReactionType!
+}
