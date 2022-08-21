@@ -31,7 +31,7 @@ Save the resulting JWT in the `REACT_APP_AUTH` variable
 
 Run
 
-`npm start`
+`yarn start`
 
 and go to
 
