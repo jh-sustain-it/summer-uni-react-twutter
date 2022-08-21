@@ -31,6 +31,12 @@ Save the resulting JWT in the `REACT_APP_AUTH` variable
 
 Run
 
+`yarn` to install dependencies
+
+Run `yarn relay` or `yarn relay --watch` to generate Relay artifacts for your queries
+
+Run
+
 `yarn start`
 
 and go to
