@@ -22,7 +22,7 @@ const Feed: FC<{
       fragment Feed_query on Query
       @refetchable(queryName: "FeedRefetchQuery")
       @argumentDefinitions(
-        first: { type: "Int", defaultValue: 10 }
+        first: { type: "Int", defaultValue: 20 }
         after: { type: "String" }
       ) {
         posts(first: $first, after: $after) @connection(key: "Feed_posts") {

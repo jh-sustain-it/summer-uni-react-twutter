@@ -56,7 +56,7 @@ export const InfiniteList = <T,>(props: InfiniteListProps<T>): JSX.Element => {
   } = props;
 
   const loadNextPage = useCallback(() => {
-    loadNext(10);
+    loadNext(20);
   }, [loadNext]);
 
   if (!items) {
