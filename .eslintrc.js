@@ -37,7 +37,6 @@ module.exports = {
   // This is where you can override rules across your project
   rules: {
     "@typescript-eslint/no-unused-vars": ["warn"],
-    "linebreak-style": ["error", "unix"],
     "@typescript-eslint/no-explicit-any": "off",
     "react/prop-types": "off",
     "relay/generated-flow-types": "off",
